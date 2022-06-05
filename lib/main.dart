@@ -42,386 +42,392 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("Calculator"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: Center(
-                  child: Text(
-                    "$result",
-                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                color: Colors.grey.shade800,
-                width: screenWidth,
-              ),
-            ),
-            SizedBox(
-              width: screenWidth / 1.5,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(screenHeight / 50),
                 child: Container(
-                  child: Visibility(
-                    visible: control,
-                    child: TextField(
-                      controller: tfController,
+                  child: Center(
+                    child: Text(
+                      "$result",
+                      style:
+                          TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                     ),
                   ),
                   color: Colors.grey.shade800,
+                  width: screenWidth,
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      var sayi1 = double.parse(tfController.text);
-                      sayilarlist.add(sayi1);
-                      tfController.text = "";
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("+"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
+              SizedBox(
+                width: screenWidth / 1.5,
+                child: Padding(
+                  padding: EdgeInsets.all(screenHeight / 50),
+                  child: Container(
+                    child: Visibility(
+                      visible: control,
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        controller: tfController,
                       ),
                     ),
+                    color: Colors.grey.shade800,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      String s = "";
-                      var l1 = [];
-                      if (tfController.text.length > 1) {
-                        for (var i = 0; i < tfController.text.length - 1; i++) {
-                          s += tfController.text[i];
-                        }
-                        tfController.text = s;
-                        print(tfController.text);
-                      } else
-                        tfController.text = "";
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("<"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
                         var sayi1 = double.parse(tfController.text);
                         sayilarlist.add(sayi1);
-                        for (var i = 0; i < sayilarlist.length; i++) {
-                          nmbr2 += sayilarlist[i];
-                        }
-                        print("Sonuc : $nmbr2");
-                        result = nmbr2;
-                        sayilarlist = [];
-                        nmbr2 = 0;
                         tfController.text = "";
-                      });
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("="),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("+"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    GestureDetector(
+                      onTap: () {
+                        String s = "";
+                        var l1 = [];
+                        if (tfController.text.length > 1) {
+                          for (var i = 0;
+                              i < tfController.text.length - 1;
+                              i++) {
+                            s += tfController.text[i];
+                          }
+                          tfController.text = s;
+                          print(tfController.text);
+                        } else
+                          tfController.text = "";
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("<"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          var sayi1 = double.parse(tfController.text);
+                          sayilarlist.add(sayi1);
+                          for (var i = 0; i < sayilarlist.length; i++) {
+                            nmbr2 += sayilarlist[i];
+                          }
+                          print("Sonuc : $nmbr2");
+                          result = nmbr2;
+                          sayilarlist = [];
+                          nmbr2 = 0;
+                          tfController.text = "";
+                        });
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("="),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      tfController.text += "7";
-                      print(tfController.text);
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("7"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        tfController.text += "7";
+                        print(tfController.text);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("7"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      tfController.text += "8";
-                      print(tfController.text);
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("8"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                    GestureDetector(
+                      onTap: () {
+                        tfController.text += "8";
+                        print(tfController.text);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("8"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      tfController.text += "9";
-                      print(tfController.text);
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("9"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                    GestureDetector(
+                      onTap: () {
+                        tfController.text += "9";
+                        print(tfController.text);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("9"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      tfController.text += "4";
-                      print(tfController.text);
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("4"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        tfController.text += "4";
+                        print(tfController.text);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("4"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      tfController.text += "5";
-                      print(tfController.text);
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("5"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                    GestureDetector(
+                      onTap: () {
+                        tfController.text += "5";
+                        print(tfController.text);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("5"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      tfController.text += "6";
-                      print(tfController.text);
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("6"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                    GestureDetector(
+                      onTap: () {
+                        tfController.text += "6";
+                        print(tfController.text);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("6"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      tfController.text += "1";
-                      print(tfController.text);
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("1"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        tfController.text += "1";
+                        print(tfController.text);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("1"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      tfController.text += "2";
-                      print(tfController.text);
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("2"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                    GestureDetector(
+                      onTap: () {
+                        tfController.text += "2";
+                        print(tfController.text);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("2"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      tfController.text += "3";
-                      print(tfController.text);
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("3"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                    GestureDetector(
+                      onTap: () {
+                        tfController.text += "3";
+                        print(tfController.text);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("3"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      tfController.text += "0";
-                      print(tfController.text);
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("0"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        tfController.text += "0";
+                        print(tfController.text);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("0"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      tfController.text += ".";
-                      print(tfController.text);
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("."),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                    GestureDetector(
+                      onTap: () {
+                        tfController.text += ".";
+                        print(tfController.text);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("."),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        tfController.text = "";
-                        sayilarlist = [];
-                        result = 0;
-                      });
-                    },
-                    child: Container(
-                      child: Center(
-                        child: Text("C"),
-                      ),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          tfController.text = "";
+                          sayilarlist = [];
+                          result = 0;
+                        });
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text("C"),
+                        ),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade800,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
